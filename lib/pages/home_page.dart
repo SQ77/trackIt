@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trackit/components/habit_tile.dart';
 import 'package:trackit/components/fab.dart';
-import 'package:trackit/components/new_habit_box.dart';
+import 'package:trackit/components/habit_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (context) {
-        return EnterNewHabitBox(
+        return HabitAlertBox(
           controller: _newHabitNameController,
           onSave: saveNewHabit,
-          onCancel: cancelNewHabit,
+          onCancel: cancelDialogBox,
         );
       },
     );
@@ -48,9 +48,36 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop(); // pop dialog box
   }
 
-  void cancelNewHabit() {
+  void cancelDialogBox() {
     _newHabitNameController.clear(); // clear text field
     Navigator.of(context).pop(); // pop dialog box
+  }
+
+  void openHabitSettings(index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return HabitAlertBox(
+          controller: _newHabitNameController,
+          onSave: () => saveExistingHabit(index),
+          onCancel: cancelDialogBox,
+        );
+      },
+    );
+  }
+
+  void saveExistingHabit(int index) {
+    setState(() {
+      todaysHabitList[index][0] = _newHabitNameController.text;
+    });
+    _newHabitNameController.clear();
+    Navigator.pop(context);
+  }
+
+  void deleteHabit(int index) {
+    setState(() {
+      todaysHabitList.removeAt(index);
+    });
   }
 
   @override
@@ -65,6 +92,8 @@ class _HomePageState extends State<HomePage> {
             name: todaysHabitList[index][0],
             isCompleted: todaysHabitList[index][1],
             onChanged: (value) => checkBoxTapped(value, index),
+            settingsTapped: (context) => openHabitSettings(index),
+            deleteTapped: (context) => deleteHabit(index),
           );
         },
       ),
