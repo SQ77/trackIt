@@ -110,6 +110,31 @@ class _HomePageState extends State<HomePage> {
             startDate: _myBox.get("START_DATE"),
           ),
 
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 1.0,
+              horizontal: 20.0,
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.checklist_outlined,
+                  color: Colors.black,
+                  size: 28,
+                ), 
+                SizedBox(width: 10),
+                Text(
+                  "Today's Habits",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           // list of habits
           ListView.builder(
             shrinkWrap: true,

@@ -44,13 +44,18 @@ class HabitTile extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
+            color: isCompleted ? Colors.green[200] : Colors.grey[100],
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
             children: [
               Checkbox(value: isCompleted, onChanged: onChanged),
-              Text(name),
+              Text(
+                name,
+                style: TextStyle(
+                  decoration: isCompleted ? TextDecoration.lineThrough : null,
+                ),
+              ),
             ],
           ),
         ),
