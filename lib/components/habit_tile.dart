@@ -81,7 +81,7 @@ class HabitTile extends StatelessWidget {
                     Text(
                       streak.toString(),
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.orange,
                       ),
