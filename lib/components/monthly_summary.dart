@@ -41,11 +41,15 @@ class MonthlySummary extends StatelessWidget {
         },
         onClick: (date) {
           int completedHabits =
-              datasets?[date] ?? 0; // Get the count or default to 0
+              datasets?[date] ?? 0; // get the count or default to 0
+          String completedPercentage = '$completedHabits%';
+          if (completedHabits != 0) {
+            completedPercentage = '${completedHabits}0%';
+          }
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                "Habits completed on ${convertDateTimeToString(date)}: $completedHabits",
+                "$completedPercentage of habits completed on ${formatDateTime(date)}",
               ),
             ),
           );
