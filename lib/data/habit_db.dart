@@ -9,10 +9,11 @@ class HabitDB {
 
   // create default data initially
   void createDefaultData() {
+    // [habit_name, complete, streak]
     todaysHabitList = [
-      ["Run 5km", false],
-      ["Read for 10 minutes", false],
-      ["Clear email inbox", false],
+      ["Run 5km", false, 0],
+      ["Read for 10 minutes", false, 0],
+      ["Clear email inbox", false, 0],
     ];
 
     _myBox.put("START_DATE", todaysDateFormatted());
@@ -20,15 +21,30 @@ class HabitDB {
 
   // load existing data
   void loadData() {
+    String todaysDate = todaysDateFormatted();
+    String yesterdaysDate = convertDateTimeToString(
+      DateTime.now().subtract(const Duration(days: 1)),
+    );
+    List? yesterdaysHabitList = _myBox.get(yesterdaysDate);
+
     // start of a new day
-    if (_myBox.get(todaysDateFormatted()) == null) {
-      todaysHabitList = _myBox.get("CURRENT_HABIT_LIST");
-      // reset all habits to not done
+    if (_myBox.get(todaysDate) == null) {
+      todaysHabitList = _myBox.get("CURRENT_HABIT_LIST") ?? [];
+      
       for (int i = 0; i < todaysHabitList.length; i++) {
+        // reset all habits to not done
         todaysHabitList[i][1] = false;
+
+        bool wasCompletedYesterday = yesterdaysHabitList != null && yesterdaysHabitList[i][1] == true;
+        // update streaks
+        if (wasCompletedYesterday) {
+          todaysHabitList[i][2] += 1; 
+        } else {
+          todaysHabitList[i][2] = 0; 
+        }
       }
     } else {
-      todaysHabitList = _myBox.get(todaysDateFormatted());
+      todaysHabitList = _myBox.get(todaysDate);
     }
   }
 
@@ -86,5 +102,11 @@ class HabitDB {
 
       heatMapDataSet.addEntries(percentForEachDay.entries);
     }
+  }
+
+  // resets all data, used for testing
+  void clearBoxData() async {
+    var box = await Hive.openBox("Habit_DB");
+    await box.clear();
   }
 }

@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     if (_myBox.get("CURRENT_HABIT_LIST") == null) {
       db.createDefaultData();
     } else {
+      //db.clearBoxData();
       db.loadData();
     }
     db.updateDB();
@@ -31,6 +32,12 @@ class _HomePageState extends State<HomePage> {
   void checkBoxTapped(bool? value, int index) {
     setState(() {
       db.todaysHabitList[index][1] = value;
+      // update streaks
+      if (value != null && value == true) {
+        db.todaysHabitList[index][2]++;
+      } else if (value != null && value == false) {
+        db.todaysHabitList[index][2]--;
+      }
     });
     db.updateDB();
   }
@@ -54,7 +61,7 @@ class _HomePageState extends State<HomePage> {
   void saveNewHabit() {
     // add new habit to list
     setState(() {
-      db.todaysHabitList.add([_newHabitNameController.text, false]);
+      db.todaysHabitList.add([_newHabitNameController.text, false, 0]);
     });
 
     _newHabitNameController.clear(); // clear text field
@@ -117,11 +124,7 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.checklist_outlined,
-                  color: Colors.black,
-                  size: 28,
-                ), 
+                Icon(Icons.checklist_outlined, color: Colors.black, size: 28),
                 SizedBox(width: 10),
                 Text(
                   "Today's Habits",
@@ -144,6 +147,7 @@ class _HomePageState extends State<HomePage> {
               return HabitTile(
                 name: db.todaysHabitList[index][0],
                 isCompleted: db.todaysHabitList[index][1],
+                streak: db.todaysHabitList[index][2],
                 onChanged: (value) => checkBoxTapped(value, index),
                 settingsTapped: (context) => openHabitSettings(index),
                 deleteTapped: (context) => deleteHabit(index),
