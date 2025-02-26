@@ -56,3 +56,28 @@ String convertDateTimeToString(DateTime dateTime) {
 
   return yyyymmdd;
 }
+
+// convert DateTime object to string "month day, year"
+String formatDateTime(DateTime date) {
+  final months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  // Extract day, month, and year
+  String month = months[date.month - 1];
+  String day = date.day.toString();
+  String year = date.year.toString();
+
+  return '$month $day, $year';
+}
