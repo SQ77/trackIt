@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackit/components/bottom_navbar.dart';
 import 'package:trackit/components/habit_tile.dart';
 import 'package:trackit/components/fab.dart';
 import 'package:trackit/components/habit_box.dart';
@@ -75,12 +76,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   void openHabitSettings(index) {
+    _newHabitNameController.text = db.todaysHabitList[index][0];
+
     showDialog(
       context: context,
       builder: (context) {
         return HabitAlertBox(
           controller: _newHabitNameController,
-          hintText: db.todaysHabitList[index][0],
+          hintText: "Edit Habit Name...",
           onSave: () => saveExistingHabit(index),
           onCancel: cancelDialogBox,
         );
@@ -156,6 +159,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavbar()
     );
   }
 }
