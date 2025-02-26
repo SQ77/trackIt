@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:trackit/datetime/date_time.dart';
+import 'package:trackit/achievements/achievements.dart';
 
 final _myBox = Hive.box("Habit_DB");
 
@@ -15,6 +16,13 @@ class TwoInts {
 class HabitDB {
   List todaysHabitList = [];
   Map<DateTime, int> heatMapDataSet = {};
+
+  List<Achievement> achievements = [
+    Achievement(name: "First Habit", description: "Complete your first habit"),
+    Achievement(name: "Streak Novice", description: "Reach a streak of 3 days"),
+    Achievement(name: "Streak Master", description: "Reach a streak of 7 days"),
+    Achievement(name: "Completionist", description: "Complete 100 habits"),
+  ];
 
   // create default data initially
   void createDefaultData() {
@@ -141,7 +149,7 @@ class HabitDB {
             if (habitStreaks.containsKey(habitName)) {
               habitStreaks[habitName] = habitStreaks[habitName]! + 1;
             } else {
-              habitStreaks[habitName] = 1; 
+              habitStreaks[habitName] = 1;
             }
 
             bestStreak = max(bestStreak, habitStreaks[habitName]!);
@@ -155,6 +163,31 @@ class HabitDB {
 
   DateTime getStartDate() {
     return createDateTimeObject(_myBox.get("START_DATE"));
+  }
+
+  void unlockAchievements() {
+    var stats = getCompletedHabitCountAndBestStreak();
+    var completedHabits = stats.firstInt;
+    var bestStreak = stats.secondInt;
+    // unlock "First Habit" after completing 1 habit
+    if (completedHabits > 0 && !achievements[0].unlocked) {
+      achievements[0].unlocked = true;
+    }
+
+    // unlock "Streak Novice" after a 3-day streak
+    if (bestStreak >= 3 && !achievements[1].unlocked) {
+      achievements[1].unlocked = true;
+    }
+
+    // unlock "Streak Master" after a 7-day streak
+    if (bestStreak >= 7 && !achievements[2].unlocked) {
+      achievements[2].unlocked = true;
+    }
+
+    // unlock "Completionist" after completing 100 habits
+    if (completedHabits >= 100 && !achievements[3].unlocked) {
+      achievements[3].unlocked = true;
+    }
   }
 
   // resets all data, used for testing

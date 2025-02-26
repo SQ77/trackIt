@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       }
     });
     db.updateDB();
+    db.unlockAchievements();
   }
 
   final _newHabitNameController = TextEditingController();
@@ -105,6 +106,7 @@ class _HomePageState extends State<HomePage> {
       db.todaysHabitList.removeAt(index);
     });
     db.updateDB();
+    db.unlockAchievements();
   }
 
   @override
@@ -159,7 +161,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavbar()
+      bottomNavigationBar: BottomNavbar(),
     );
   }
 }
