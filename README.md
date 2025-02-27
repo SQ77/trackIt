@@ -3,15 +3,43 @@
 **TrackIt** is a lightweight, engaging habit tracker that helps you build and maintain daily habits effortlessly. No sign-ups, no accounts—just open the app and start tracking! 🚀  
 
 ## ✨ Features  
-✔ **Daily Habit Logging** – Mark your habit as complete every day.  
-✔ **Habit Streaks** – Stay motivated with streak tracking.  
-✔ **Calendar Heatmap View** – Visualize your progress over time.  
-✔ **Offline Support** – Works completely offline with local storage.  
-✔ **Minimalist & Fun UI** – A simple, gamified experience to keep you engaged.  
+- **Daily Habit Logging** – Mark your habit as complete every day.  
+- **Habit Streaks** – Stay motivated with streak tracking.  
+- **Calendar Heatmap View** – Visualize your progress over time.  
+- **Engaging UI & Gamification** – Unlock achievements and enjoy a delightful tracking experience.
+- **Offline Support** – Works completely offline with local storage.  
 
 ## 🖥️ Tech Stack  
 - **Flutter** – Cross-platform mobile development  
-- **Hive** – Local storage for tracking habits  
+- **Hive** – Local storage for tracking habits
+
+## 🎯 Goals & Scope
+TrackIt is a single-user experience with no backend or authentication required. The focus is on delivering a seamless and enjoyable habit tracking interface. The app is designed to work fully offline, allowing users to track their habits anytime, anywhere.
+
+## 🚀 Getting Started  
+### Prerequisites  
+- Install [Flutter](https://flutter.dev/docs/get-started/install)
+
+### Running the App
+- Clone the repository:  
+  ```bash  
+  git clone https://github.com/SQ77/trackIt.git  
+  cd trackIt  
+  ```  
+- Install dependencies:  
+  ```bash  
+  flutter pub get  
+  ```  
+- Run the app:  
+  ```bash  
+  flutter run  
+  ```
+
+## 📜 Summary of Design Decisions  
+- **Minimalist yet Fun UI:** A balance between simplicity and engagement through animations and gamification.
+- **Optimized for Quick Logging:** Users can log habits with minimal effort to encourage consistency.
+- **Local Storage:** Ensuring a smooth offline experience with Hive.
+
 
 ## Feature Ideas & Constraints
 
@@ -20,7 +48,7 @@ This section documents potential features or tasks that could significantly enha
 ### Potential Features
 
 - **Interactive Dashboard**  
-A more detailed dashboard for tracking user progress, displaying data visualizations like graphs for streaks, and completed habits over time. This could be tied into a real-time leaderboard for added user engagement.
+A more detailed dashboard for tracking user progress, displaying data visualizations like graphs for streaks, and completed habits over time.
 
 - **Social Sharing**  
 The ability to share achievements and completed habits on social media. Users could share a post or badge showing off their progress, increasing visibility and encouraging engagement.
