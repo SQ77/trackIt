@@ -22,7 +22,7 @@ class HabitTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
       child: Slidable(
         endActionPane: ActionPane(
           motion: const StretchMotion(),
@@ -56,9 +56,12 @@ class HabitTile extends StatelessWidget {
               Flexible(
                 child: Row(
                   children: [
-                    Checkbox(value: isCompleted, onChanged: onChanged),
+                    Transform.scale(
+                      scale: 1.3,
+                      child: Checkbox(value: isCompleted, onChanged: onChanged),
+                    ),
                     Flexible(
-                      // prevents overflow 
+                      // prevents overflow
                       child: Text(
                         name,
                         style: TextStyle(

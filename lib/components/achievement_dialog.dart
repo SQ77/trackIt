@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:trackit/achievements/achievements.dart';
 import 'package:trackit/components/confetti.dart';
@@ -50,6 +52,11 @@ class AchievementDialog extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(achievement.description, style: TextStyle(fontSize: 18)),
+          SizedBox(height: 5),
+          Text(
+            "${(min(100, achievement.done / achievement.needed * 100)).toStringAsFixed(1)}% complete",
+            style: TextStyle(fontSize: 18),
+          ),
           if (achievement.unlocked) const ConfettiEffect(),
         ],
       ),
