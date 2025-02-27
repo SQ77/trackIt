@@ -219,6 +219,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_confetti:
+    dependency: "direct main"
+    description:
+      name: flutter_confetti
+      sha256: "27964ee6b02dd88a752017fa6441d297b65b4b150a67ed0685412fcc2c355eb6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   flutter_heatmap_calendar:
     dependency: "direct main"
     description:
