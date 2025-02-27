@@ -144,20 +144,23 @@ class _HomePageState extends State<HomePage> {
           ),
 
           // list of habits
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: db.todaysHabitList.length,
-            itemBuilder: (context, index) {
-              return HabitTile(
-                name: db.todaysHabitList[index][0],
-                isCompleted: db.todaysHabitList[index][1],
-                streak: db.todaysHabitList[index][2],
-                onChanged: (value) => checkBoxTapped(value, index),
-                settingsTapped: (context) => openHabitSettings(index),
-                deleteTapped: (context) => deleteHabit(index),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: db.todaysHabitList.length,
+              itemBuilder: (context, index) {
+                return HabitTile(
+                  name: db.todaysHabitList[index][0],
+                  isCompleted: db.todaysHabitList[index][1],
+                  streak: db.todaysHabitList[index][2],
+                  onChanged: (value) => checkBoxTapped(value, index),
+                  settingsTapped: (context) => openHabitSettings(index),
+                  deleteTapped: (context) => deleteHabit(index),
+                );
+              },
+            ),
           ),
         ],
       ),

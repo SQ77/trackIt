@@ -27,11 +27,11 @@ class HabitTile extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const StretchMotion(),
           children: [
-            // settings option
+            // edit option
             SlidableAction(
               onPressed: settingsTapped,
-              backgroundColor: Colors.grey.shade800,
-              icon: Icons.settings,
+              backgroundColor: Colors.blue.shade800,
+              icon: Icons.edit,
               borderRadius: BorderRadius.circular(12),
             ),
             // delete option
@@ -53,19 +53,26 @@ class HabitTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // checkbox and habit name
-              Row(
-                children: [
-                  Checkbox(value: isCompleted, onChanged: onChanged),
-                  Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      decoration:
-                          isCompleted ? TextDecoration.lineThrough : null,
+              Flexible(
+                child: Row(
+                  children: [
+                    Checkbox(value: isCompleted, onChanged: onChanged),
+                    Flexible(
+                      // prevents overflow 
+                      child: Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          decoration:
+                              isCompleted ? TextDecoration.lineThrough : null,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 
               // streak counter
