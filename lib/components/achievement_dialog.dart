@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackit/achievements/achievements.dart';
+import 'package:trackit/components/confetti.dart';
 
 class AchievementDialog extends StatelessWidget {
   final Achievement achievement;
@@ -27,7 +28,8 @@ class AchievementDialog extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           SizedBox(height: 5),
-          Text(achievement.description),
+          Text(achievement.description, style: TextStyle(fontSize: 18)),
+          if (achievement.unlocked) const ConfettiEffect(),
         ],
       ),
     );
