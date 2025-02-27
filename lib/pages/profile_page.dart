@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackit/achievements/achievements.dart';
+import 'package:trackit/components/achievement_dialog.dart';
 import 'package:trackit/components/bottom_navbar.dart';
 import 'package:trackit/data/habit_db.dart';
 import 'package:trackit/datetime/date_time.dart';
@@ -101,7 +102,11 @@ class _ProfilePageState extends State<ProfilePage> {
             Divider(color: Colors.green, thickness: 1, height: 30),
 
             Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 10.0),
+              padding: const EdgeInsets.only(
+                top: 20.0,
+                left: 10.0,
+                bottom: 10.0,
+              ),
               child: Text(
                 'Achievements',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -113,16 +118,39 @@ class _ProfilePageState extends State<ProfilePage> {
                   children:
                       achievements!.map((achievement) {
                         return ListTile(
-                          title: Text(achievement.name),
-                          subtitle: Text(achievement.description),
-                          trailing: Icon(
-                            achievement.unlocked
-                                ? Icons.check_circle
-                                : Icons.circle,
-                            color:
-                                achievement.unlocked
-                                    ? Colors.green
-                                    : Colors.grey,
+                          leading: GestureDetector(
+                            onTap: () {
+                              // open the AchievementDialog when image is tapped
+                              showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AchievementDialog(
+                                      achievement: achievement,
+                                    ),
+                              );
+                            },
+                            child: Opacity(
+                              opacity: achievement.unlocked ? 1.0 : 0.2,
+                              child: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: Image.asset(
+                                  'assets/images/${achievement.badgeImage}',
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            achievement.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          subtitle: Text(
+                            achievement.description,
+                            style: TextStyle(fontSize: 16),
                           ),
                         );
                       }).toList(),

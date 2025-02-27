@@ -18,10 +18,26 @@ class HabitDB {
   Map<DateTime, int> heatMapDataSet = {};
 
   List<Achievement> achievements = [
-    Achievement(name: "First Habit", description: "Complete your first habit"),
-    Achievement(name: "Streak Novice", description: "Reach a streak of 3 days"),
-    Achievement(name: "Streak Master", description: "Reach a streak of 7 days"),
-    Achievement(name: "Completionist", description: "Complete 100 habits"),
+    Achievement(
+      name: "First Habit",
+      description: "Complete your first habit",
+      badgeImage: "habit-1.png",
+    ),
+    Achievement(
+      name: "Streak Novice",
+      description: "Reach a streak of 3 days",
+      badgeImage: "streak-3.png",
+    ),
+    Achievement(
+      name: "Streak Master",
+      description: "Reach a streak of 7 days",
+      badgeImage: "streak-7.png",
+    ),
+    Achievement(
+      name: "Completionist",
+      description: "Complete 100 habits",
+      badgeImage: "habit-100.png",
+    ),
   ];
 
   // create default data initially
