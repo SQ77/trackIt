@@ -70,12 +70,10 @@ class HabitDB {
 
         bool wasCompletedYesterday =
             yesterdaysHabitList != null && yesterdaysHabitList[i][1] == true;
-        // update streaks
-        if (wasCompletedYesterday) {
-          todaysHabitList[i][2] += 1;
-        } else {
+        // reset streak if broken
+        if (!wasCompletedYesterday) {
           todaysHabitList[i][2] = 0;
-        }
+        } 
       }
     } else {
       todaysHabitList = _myBox.get(todaysDate);
