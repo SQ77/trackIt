@@ -22,21 +22,25 @@ class HabitDB {
       name: "First Habit",
       description: "Complete your first habit",
       badgeImage: "habit-1.png",
+      needed: 1,
     ),
     Achievement(
       name: "Streak Novice",
       description: "Reach a streak of 3 days",
       badgeImage: "streak-3.png",
+      needed: 3,
     ),
     Achievement(
       name: "Streak Master",
       description: "Reach a streak of 7 days",
       badgeImage: "streak-7.png",
+      needed: 7,
     ),
     Achievement(
       name: "Completionist",
       description: "Complete 100 habits",
       badgeImage: "habit-100.png",
+      needed: 100,
     ),
   ];
 
@@ -73,7 +77,7 @@ class HabitDB {
         // reset streak if broken
         if (!wasCompletedYesterday) {
           todaysHabitList[i][2] = 0;
-        } 
+        }
       }
     } else {
       todaysHabitList = _myBox.get(todaysDate);
@@ -183,6 +187,12 @@ class HabitDB {
     var stats = getCompletedHabitCountAndBestStreak();
     var completedHabits = stats.firstInt;
     var bestStreak = stats.secondInt;
+
+    achievements[0].done = completedHabits;
+    achievements[1].done = bestStreak;
+    achievements[2].done = bestStreak;
+    achievements[3].done = completedHabits;
+
     // unlock "First Habit" after completing 1 habit
     if (completedHabits > 0 && !achievements[0].unlocked) {
       achievements[0].unlocked = true;

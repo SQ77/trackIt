@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:trackit/achievements/achievements.dart';
 import 'package:trackit/components/achievement_dialog.dart';
@@ -148,9 +150,34 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontSize: 20,
                             ),
                           ),
-                          subtitle: Text(
-                            achievement.description,
-                            style: TextStyle(fontSize: 16),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              right: 8.0,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                LinearProgressIndicator(
+                                  value: achievement.done / achievement.needed,
+                                  minHeight: 8,
+                                  backgroundColor: Colors.green[200],
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                        Colors.green,
+                                      ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  "${min(achievement.done, achievement.needed)} of ${achievement.needed}",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),
