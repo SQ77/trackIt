@@ -13,8 +13,28 @@ class AchievementDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Opacity(
-            opacity: achievement.unlocked ? 1.0 : 0.1,
+          // different opacity for different parts of achievement badge
+          // visually shows user's progress to unlocking achievement
+          ShaderMask(
+            shaderCallback: (rect) {
+              return LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Color.fromRGBO(0, 0, 0, 0.1),
+                  Color.fromRGBO(0, 0, 0, 0.1),
+                  Color.fromRGBO(0, 0, 0, 1.0),
+                  Color.fromRGBO(0, 0, 0, 1.0),
+                ],
+                stops: [
+                  0.0,
+                  1 - achievement.done / achievement.needed,
+                  1 - achievement.done / achievement.needed,
+                  1.0,
+                ],
+              ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+            },
+            blendMode: BlendMode.dstIn,
             child: Image.asset(
               'assets/images/${achievement.badgeImage}',
               width: 200,
@@ -22,6 +42,7 @@ class AchievementDialog extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+
           SizedBox(height: 10),
           Text(
             achievement.name,
