@@ -12,7 +12,7 @@ class AchievementUnlock extends StatefulWidget {
 }
 
 class _AchievementUnlockState extends State<AchievementUnlock> {
-  bool showConfetti = false;
+  bool showConfetti = true;
 
   void _triggerConfetti() {
     setState(() {
@@ -49,7 +49,7 @@ class _AchievementUnlockState extends State<AchievementUnlock> {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(widget.achievement.name),
+              Text(widget.achievement.name, style: TextStyle(fontSize: 18)),
             ],
           ),
           actions: [

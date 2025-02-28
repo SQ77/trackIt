@@ -63,6 +63,14 @@ class HabitDB {
     );
     List? yesterdaysHabitList = _myBox.get(yesterdaysDate);
 
+    // load achievement state from Hive
+    List? achievementState = _myBox.get("ACHIEVEMENT_STATE");
+    if (achievementState != null) {
+      for (int i = 0; i < achievements.length; i++) {
+        achievements[i].unlocked = achievementState[i];
+      }
+    }
+
     // start of a new day
     if (_myBox.get(todaysDate) == null) {
       todaysHabitList = _myBox.get("CURRENT_HABIT_LIST") ?? [];
@@ -195,27 +203,38 @@ class HabitDB {
     // unlock "First Habit" after completing 1 habit
     if (completedHabits > 0 && !achievements[0].unlocked) {
       achievements[0].unlocked = true;
+      _saveAchievementState();
       return achievements[0];
     }
 
     // unlock "Streak Novice" after a 3-day streak
     if (bestStreak >= 3 && !achievements[1].unlocked) {
       achievements[1].unlocked = true;
+      _saveAchievementState();
       return achievements[1];
     }
 
     // unlock "Streak Master" after a 7-day streak
     if (bestStreak >= 7 && !achievements[2].unlocked) {
       achievements[2].unlocked = true;
+      _saveAchievementState();
       return achievements[2];
     }
 
     // unlock "Completionist" after completing 100 habits
     if (completedHabits >= 100 && !achievements[3].unlocked) {
       achievements[3].unlocked = true;
+      _saveAchievementState();
       return achievements[3];
     }
     return null;
+  }
+
+  // save the achievement state to Hive
+  void _saveAchievementState() {
+    var achievementData =
+        achievements.map((achievement) => achievement.unlocked).toList();
+    _myBox.put("ACHIEVEMENT_STATE", achievementData);
   }
 
   // resets all data, used for testing
