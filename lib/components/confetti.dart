@@ -14,35 +14,14 @@ class _ConfettiEffectState extends State<ConfettiEffect> {
   @override
   void initState() {
     super.initState();
-    _shootStars();
+    _shootConfetti();
   }
 
-  void _shootStars() {
-    const options = ConfettiOptions(
-      spread: 360,
-      ticks: 50,
-      gravity: 0,
-      decay: 0.94,
-      startVelocity: 30,
-      colors: [
-        Color(0xffFFE400),
-        Color(0xffFFBD00),
-        Color(0xffE89400),
-        Color(0xffFFCA6C),
-        Color(0xffFDFFB8),
-      ],
-    );
-
+  void _shootConfetti() {
     void shoot() {
       Confetti.launch(
         context,
-        options: options.copyWith(particleCount: 40, scalar: 1.2),
-        particleBuilder: (index) => Star(),
-      );
-      Confetti.launch(
-        context,
-        options: options.copyWith(particleCount: 10, scalar: 0.75),
-        particleBuilder: (index) => Star(),
+        options: const ConfettiOptions(particleCount: 100, spread: 70, y: 0.6),
       );
     }
 

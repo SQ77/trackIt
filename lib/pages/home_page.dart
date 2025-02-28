@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trackit/achievements/achievements.dart';
+import 'package:trackit/components/achievement_unlock.dart';
 import 'package:trackit/components/bottom_navbar.dart';
 import 'package:trackit/components/habit_tile.dart';
 import 'package:trackit/components/fab.dart';
@@ -17,6 +19,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   HabitDB db = HabitDB();
   final _myBox = Hive.box("Habit_DB");
+  bool showAchievementUnlocked = false;
+  Achievement? unlockedAchievementToShow;
 
   @override
   void initState() {
@@ -41,7 +45,33 @@ class _HomePageState extends State<HomePage> {
       }
     });
     db.updateDB();
-    db.unlockAchievements();
+    Achievement? unlockedAchievement = db.unlockAchievements();
+
+    if (unlockedAchievement != null && !showAchievementUnlocked) {
+      setState(() {
+        showAchievementUnlocked = true;
+        unlockedAchievementToShow = unlockedAchievement;
+      });
+      Future.delayed(Duration.zero, () {
+        if (showAchievementUnlocked &&
+            unlockedAchievementToShow != null &&
+            mounted) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AchievementUnlock(achievement: unlockedAchievementToShow!);
+            },
+          ).then((_) {
+            if (mounted) {
+              setState(() {
+                showAchievementUnlocked = false;
+                unlockedAchievementToShow = null;
+              });
+            }
+          });
+        }
+      });
+    }
   }
 
   final _newHabitNameController = TextEditingController();

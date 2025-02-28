@@ -16,7 +16,6 @@ class TwoInts {
 class HabitDB {
   List todaysHabitList = [];
   Map<DateTime, int> heatMapDataSet = {};
-
   List<Achievement> achievements = [
     Achievement(
       name: "First Habit",
@@ -183,7 +182,7 @@ class HabitDB {
     return createDateTimeObject(_myBox.get("START_DATE"));
   }
 
-  void unlockAchievements() {
+  Achievement? unlockAchievements() {
     var stats = getCompletedHabitCountAndBestStreak();
     var completedHabits = stats.firstInt;
     var bestStreak = stats.secondInt;
@@ -196,22 +195,27 @@ class HabitDB {
     // unlock "First Habit" after completing 1 habit
     if (completedHabits > 0 && !achievements[0].unlocked) {
       achievements[0].unlocked = true;
+      return achievements[0];
     }
 
     // unlock "Streak Novice" after a 3-day streak
     if (bestStreak >= 3 && !achievements[1].unlocked) {
       achievements[1].unlocked = true;
+      return achievements[1];
     }
 
     // unlock "Streak Master" after a 7-day streak
     if (bestStreak >= 7 && !achievements[2].unlocked) {
       achievements[2].unlocked = true;
+      return achievements[2];
     }
 
     // unlock "Completionist" after completing 100 habits
     if (completedHabits >= 100 && !achievements[3].unlocked) {
       achievements[3].unlocked = true;
+      return achievements[3];
     }
+    return null;
   }
 
   // resets all data, used for testing
