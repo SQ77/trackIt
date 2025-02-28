@@ -1,3 +1,5 @@
+![home_screenshot](assets/images/home_page_framed.png)
+
 # TrackIt – Simple & Fun Habit Tracker  
 
 **TrackIt** is a lightweight, engaging habit tracker that helps you build and maintain daily habits effortlessly. No sign-ups, no accounts—just open the app and start tracking! 🚀  
@@ -26,21 +28,18 @@ Below are some screenshots showcasing the key features of TrackIt:
 ### Home Screen
 This is where you can view your daily habits and mark them as complete. You can also create, edit, and delete habits.
 
-**Heatmap**: The Heatmap visualizes your progress over time. It uses a color gradient to show how many habits you have completed each day. The darker the color, the more habits you have completed.
-
-**Streaks**: Your Streaks are tracked to motivate you. Every day you complete a habit, your streak increases.
-
-**Achievement Unlocked**: As you continue to track and complete your habits, you will unlock various achievements.
+|  |  |
+|-------|------|
+| ![home_page](assets/images/home_page_framed_bigger.png) | **Heatmap**: The Heatmap visualizes your progress over time. It uses a color gradient to show how many habits you have completed each day. The darker the color, the more habits you have completed. <br><br> **Streaks**: Your Streaks are tracked to motivate you. Every day you complete a habit, your streak increases. <br><br> **Achievement Unlocked**: As you continue to track and complete your habits, you will unlock various achievements. |
+| | |
 
 ### Profile Screen
 This is where you can see your achievements and progress in one place. It gives you a high-level overview of your journey and rewards you for consistency.
 
-**Achievements**: On the **Profile Screen**, you can view the achievements you have unlocked. These achievements act as badges that showcase your progress and dedication in building habits.
- 
-For instance:
-- **First Habit:** Awarded for completing your first habit.
-- **Streak Master:** Awarded for reaching a streak of 7 days.
-- **Completionist:** Awarded after completing 100 habits.
+|  |  |
+|-------|------|
+| ![profile_page](assets/images/profile_page_framed.png) | **Achievements**: On the **Profile Screen**, you can view the achievements you have unlocked. These achievements act as badges that showcase your progress and dedication in building habits. <br><br> For instance: <br><br> **First Habit:** Awarded for completing your first habit. <br><br> **Streak Master:** Awarded for reaching a streak of 7 days. <br><br> **Completionist:** Awarded after completing 100 habits. |
+
 
 ## 🚀 Getting Started  
 ### Prerequisites  
