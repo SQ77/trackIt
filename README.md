@@ -16,6 +16,32 @@
 ## 🎯 Goals & Scope
 TrackIt is a single-user experience with no backend or authentication required. The focus is on delivering a seamless and enjoyable habit tracking interface. The app is designed to work fully offline, allowing users to track their habits anytime, anywhere.
 
+## 🏆 Showcase
+### Deployed Web App
+You can try TrackIt on the web! Check out the deployed version [here](https://trackit-habittracker.web.app/) and explore how it can help you build and maintain your daily habits.
+
+### Screenshots
+Below are some screenshots showcasing the key features of TrackIt:
+
+### Home Screen
+This is where you can view your daily habits and mark them as complete. You can also create, edit, and delete habits.
+
+**Heatmap**: The Heatmap visualizes your progress over time. It uses a color gradient to show how many habits you have completed each day. The darker the color, the more habits you have completed.
+
+**Streaks**: Your Streaks are tracked to motivate you. Every day you complete a habit, your streak increases.
+
+**Achievement Unlocked**: As you continue to track and complete your habits, you will unlock various achievements.
+
+### Profile Screen
+This is where you can see your achievements and progress in one place. It gives you a high-level overview of your journey and rewards you for consistency.
+
+**Achievements**: On the **Profile Screen**, you can view the achievements you have unlocked. These achievements act as badges that showcase your progress and dedication in building habits.
+ 
+For instance:
+- **First Habit:** Awarded for completing your first habit.
+- **Streak Master:** Awarded for reaching a streak of 7 days.
+- **Completionist:** Awarded after completing 100 habits.
+
 ## 🚀 Getting Started  
 ### Prerequisites  
 - Install [Flutter](https://flutter.dev/docs/get-started/install)
