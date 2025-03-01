@@ -96,3 +96,7 @@ Enhance the user experience with more engaging and dynamic animations, such as t
 - **User Customization**  
   Customizing habit categories or personalizing the look and feel of the app is an idea for future improvements. However, this would require extra development resources and time that were unavailable in the current scope.
 
+## Acknowledgements
+
+- [OpenArt.ai](https://openart.ai/home): Generating images for the achievement badges
+- [Mitch Koko](https://www.youtube.com/@createdbykoko): Habit tracker tutorial
