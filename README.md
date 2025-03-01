@@ -2,21 +2,41 @@
 
 # TrackIt – Simple & Fun Habit Tracker  
 
-**TrackIt** is a lightweight, engaging habit tracker that helps you build and maintain daily habits effortlessly. No sign-ups, no accounts—just open the app and start tracking! 🚀  
+**TrackIt** is a lightweight, engaging habit tracker that helps you build and maintain daily habits effortlessly. No sign-ups, no accounts—just open the app and start tracking! 🚀 
 
-## ✨ Features  
+## 📑 Contents
+
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Goals & Scope](#goals)  
+- [Showcase](#showcase)   
+- [Getting Started](#getting-started) 
+- [Summary of Design Decisions](#design-decisions)  
+- [Feature Ideas & Constraints](#ideas) 
+- [Challenges Faced](#challenges-faced)  
+- [Acknowledgements](#acknowledgements)  
+
+<a id="features"></a>
+
+## ✨ Features 
 - **Daily Habit Logging** – Mark your habit as complete every day.  
 - **Habit Streaks** – Stay motivated with streak tracking.  
 - **Calendar Heatmap View** – Visualize your progress over time.  
 - **Engaging UI & Gamification** – Unlock achievements and enjoy a delightful tracking experience.
 - **Offline Support** – Works completely offline with local storage.  
 
+<a id="tech-stack"></a>
+
 ## 🖥️ Tech Stack  
 - **Flutter** – Cross-platform mobile development  
 - **Hive** – Local storage for tracking habits
 
+<a id="goals"></a>
+
 ## 🎯 Goals & Scope
 TrackIt is a single-user experience with no backend or authentication required. The focus is on delivering a seamless and enjoyable habit tracking interface. The app is designed to work fully offline, allowing users to track their habits anytime, anywhere.
+
+<a id="showcase"></a>
 
 ## 🏆 Showcase
 ### Deployed Web App
@@ -39,8 +59,9 @@ This is where you can see your achievements and progress in one place. It gives 
 |  |  |
 |-------|------|
 | ![profile_page](assets/images/profile_page_framed.png) | **Achievements**: On the **Profile Screen**, you can view the achievements you have unlocked. These achievements act as badges that showcase your progress and dedication in building habits. <br><br> For instance: <br><br> **First Habit:** Awarded for completing your first habit. <br><br> **Streak Master:** Awarded for reaching a streak of 7 days. <br><br> **Completionist:** Awarded after completing 100 habits. |
-| ![achievement_view](assets/images/achievement_view.png) | **Achievements view**: Tap on each achievement to view a more detailed description of it. |
+| ![achievement_view](assets/images/achievement_view.png) | **Achievements View**: Tap on each achievement to view a more detailed description of it. |
 
+<a id="getting-started"></a>
 
 ## 🚀 Getting Started  
 ### Prerequisites  
@@ -61,11 +82,14 @@ This is where you can see your achievements and progress in one place. It gives 
   flutter run  
   ```
 
+<a id="design-decisions"></a>
+
 ## 📜 Summary of Design Decisions  
 - **Minimalist yet Fun UI:** A balance between simplicity and engagement through animations and gamification.
 - **Optimized for Quick Logging:** Users can log habits with minimal effort to encourage consistency.
 - **Local Storage:** Ensuring a smooth offline experience with Hive.
 
+<a id="ideas"></a>
 
 ## Feature Ideas & Constraints
 
