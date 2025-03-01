@@ -96,6 +96,16 @@ Enhance the user experience with more engaging and dynamic animations, such as t
 - **User Customization**  
   Customizing habit categories or personalizing the look and feel of the app is an idea for future improvements. However, this would require extra development resources and time that were unavailable in the current scope.
 
+## Challenges Faced
+
+1. Learning Flutter and Dart
+
+Since this was my first project using Flutter and Dart, there was a learning curve in understanding Flutter's widget tree, state management, and how Dart handles asynchronous operations. Adapting to Flutter’s declarative UI approach took some time but was a rewarding experience.
+
+2. Creating a Minimalist yet Fun UI
+
+Striking a balance between a simple, clutter-free design and an engaging user experience was a challenge. I aimed to keep the interface minimal while incorporating animations and gamification elements to make habit tracking more enjoyable. 
+
 ## Acknowledgements
 
 - [OpenArt.ai](https://openart.ai/home): Generating images for the achievement badges
