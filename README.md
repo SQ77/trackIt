@@ -23,7 +23,8 @@
 - **Habit Streaks** – Stay motivated with streak tracking.  
 - **Calendar Heatmap View** – Visualize your progress over time.  
 - **Engaging UI & Gamification** – Unlock achievements and enjoy a delightful tracking experience.
-- **Offline Support** – Works completely offline with local storage.  
+- **Offline Support** – Works completely offline with local storage.
+- **Dark Mode** – Enjoy a comfortable experience with a dark theme.
 
 <a id="tech-stack"></a>
 
