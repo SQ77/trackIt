@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     if (_myBox.get("CURRENT_HABIT_LIST") == null) {
       db.createDefaultData();
     } else {
+      //db.populateSampleData();
       //db.clearBoxData();
       db.loadData();
     }
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).colorScheme.surface,
       floatingActionButton: MyFloatingActionButton(onPressed: createNewHabit),
       body: ListView(
         children: [
@@ -159,15 +160,11 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Row(
               children: [
-                Icon(Icons.checklist_outlined, color: Colors.black, size: 28),
+                Icon(Icons.checklist_outlined, size: 28),
                 SizedBox(width: 10),
                 Text(
                   "Today's Habits",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

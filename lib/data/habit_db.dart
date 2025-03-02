@@ -242,4 +242,45 @@ class HabitDB {
     var box = await Hive.openBox("Habit_DB");
     await box.clear();
   }
+
+  void populateSampleData() {
+    // Populate today's habits
+    todaysHabitList = [
+      ["Run 5km", false, 5], 
+      ["Read for 10 minutes", true, 10], 
+      ["Clear email inbox", false, 0], 
+      ["Drink 2L of water", true, 7], 
+    ];
+
+    // Add sample heatmap data
+    DateTime startDate = DateTime.now().subtract(Duration(days: 25));
+    for (int i = 0; i < 25; i++) {
+      double randomPercent = Random().nextDouble() * 0.7 + 0.3;
+      String dateKey = convertDateTimeToString(
+        startDate.add(Duration(days: i)),
+      );
+      _myBox.put(
+        "PERCENTAGE_SUMMARY_$dateKey",
+        randomPercent.toStringAsFixed(1),
+      );
+    }
+
+    // Add sample achievements
+    achievements[0].unlocked = true; 
+    achievements[1].unlocked = true; 
+    achievements[2].unlocked = true; 
+    achievements[3].unlocked = false;
+
+    // Save achievements state to Hive
+    _saveAchievementState();
+
+    _myBox.put("START_DATE", "20250203");
+
+    // Save today's habit list to Hive
+    _myBox.put(todaysDateFormatted(), todaysHabitList);
+    _myBox.put("CURRENT_HABIT_LIST", todaysHabitList);
+
+    // Update the heatmap
+    loadHeatMap();
+  }
 }

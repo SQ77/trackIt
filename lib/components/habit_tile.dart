@@ -46,7 +46,10 @@ class HabitTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: isCompleted ? Colors.green[200] : Colors.grey[100],
+            color:
+                isCompleted
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
@@ -58,7 +61,26 @@ class HabitTile extends StatelessWidget {
                   children: [
                     Transform.scale(
                       scale: 1.3,
-                      child: Checkbox(value: isCompleted, onChanged: onChanged),
+                      child: Checkbox(
+                        value: isCompleted,
+                        onChanged: onChanged,
+                        checkColor: Colors.white,
+                        side: BorderSide(
+                          color:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                          width: 2,
+                        ),
+                        fillColor: WidgetStateProperty.resolveWith<Color>((
+                          Set<WidgetState> states,
+                        ) {
+                          if (states.contains(WidgetState.selected)) {
+                            return Colors.green;
+                          }
+                          return Theme.of(context).colorScheme.secondary;
+                        }),
+                      ),
                     ),
                     Flexible(
                       // prevents overflow

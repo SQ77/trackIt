@@ -23,23 +23,33 @@ class BottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
-      color: Colors.green[200],
+      color: Theme.of(context).colorScheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-            icon: Icon(Icons.home, color: Colors.black),
+            icon: Icon(
+              Icons.home,
+              color:
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white70
+                      : Colors.black,
+            ),
             iconSize: 30,
             tooltip: "Home",
-            onPressed:
-                () => navigateToHome(context), // Pass context to navigate
+            onPressed: () => navigateToHome(context),
           ),
           IconButton(
-            icon: Icon(Icons.person, color: Colors.black),
+            icon: Icon(
+              Icons.person,
+              color:
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white70
+                      : Colors.black,
+            ),
             iconSize: 30,
             tooltip: "Profile",
-            onPressed:
-                () => navigateToProfile(context), // Pass context to navigate
+            onPressed: () => navigateToProfile(context),
           ),
         ],
       ),
