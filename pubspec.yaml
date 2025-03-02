@@ -37,6 +37,7 @@ dependencies:
     hive_flutter: ^1.1.0
     flutter_heatmap_calendar: ^1.0.5
     flutter_confetti: ^0.4.0
+    provider: ^6.1.2
 
 dev_dependencies:
     flutter_test:
