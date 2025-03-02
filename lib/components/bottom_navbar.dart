@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:trackit/pages/profile_page.dart';
 import 'package:trackit/pages/home_page.dart';
+import 'package:trackit/theme/theme.dart';
+import 'package:trackit/theme/theme_provider.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar({super.key});
@@ -21,6 +24,14 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    const WidgetStateProperty<Icon> thumbIcon =
+        WidgetStateProperty<Icon>.fromMap(<WidgetStatesConstraint, Icon>{
+          WidgetState.selected: Icon(Icons.dark_mode, color: Colors.white),
+          WidgetState.any: Icon(Icons.light_mode),
+        });
+
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
       color: Theme.of(context).colorScheme.primary,
@@ -50,6 +61,23 @@ class BottomNavbar extends StatelessWidget {
             iconSize: 30,
             tooltip: "Profile",
             onPressed: () => navigateToProfile(context),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white, width: 1),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            child: SizedBox(
+              width: 51,
+              height: 31,
+              child: Switch(
+                thumbIcon: thumbIcon,
+                value: themeProvider.themeData == darkMode,
+                onChanged: (value) {
+                  themeProvider.toggleTheme();
+                },
+              ),
+            ),
           ),
         ],
       ),
