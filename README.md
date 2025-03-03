@@ -1,4 +1,5 @@
-![home_screenshot](assets/images/home_page_framed.png)
+![home_screenshot](assets/images/home_light_framed.png)
+![home_screenshot_dark](assets/images/home_dark_framed.png)
 
 # TrackIt – Simple & Fun Habit Tracker  
 
