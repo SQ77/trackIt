@@ -83,7 +83,6 @@ class HabitTile extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      // prevents overflow
                       child: Text(
                         name,
                         style: TextStyle(
@@ -92,8 +91,7 @@ class HabitTile extends StatelessWidget {
                           decoration:
                               isCompleted ? TextDecoration.lineThrough : null,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: false,
+                        softWrap: true,
                       ),
                     ),
                   ],
