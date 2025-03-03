@@ -92,9 +92,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   void saveNewHabit() {
+    String habitName = _newHabitNameController.text.trim();
+
+    if (habitName.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Habit name cannot be empty")));
+      return;
+    }
+
     // add new habit to list
     setState(() {
-      db.todaysHabitList.add([_newHabitNameController.text, false, 0]);
+      db.todaysHabitList.add([habitName, false, 0]);
     });
 
     _newHabitNameController.clear(); // clear text field
