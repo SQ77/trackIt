@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -43,82 +44,91 @@ class HabitTile extends StatelessWidget {
             ),
           ],
         ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            color:
-                isCompleted
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(8),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth:
+                kIsWeb
+                    ? MediaQuery.of(context).size.width * 0.9
+                    : double.infinity,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // checkbox and habit name
-              Flexible(
-                child: Row(
-                  children: [
-                    Transform.scale(
-                      scale: 1.3,
-                      child: Checkbox(
-                        value: isCompleted,
-                        onChanged: onChanged,
-                        checkColor: Colors.white,
-                        side: BorderSide(
-                          color:
-                              Theme.of(context).brightness == Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                          width: 2,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color:
+                  isCompleted
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // checkbox and habit name
+                Flexible(
+                  child: Row(
+                    children: [
+                      Transform.scale(
+                        scale: 1.3,
+                        child: Checkbox(
+                          value: isCompleted,
+                          onChanged: onChanged,
+                          checkColor: Colors.white,
+                          side: BorderSide(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                            width: 2,
+                          ),
+                          fillColor: WidgetStateProperty.resolveWith<Color>((
+                            Set<WidgetState> states,
+                          ) {
+                            if (states.contains(WidgetState.selected)) {
+                              return Colors.green;
+                            }
+                            return Theme.of(context).colorScheme.secondary;
+                          }),
                         ),
-                        fillColor: WidgetStateProperty.resolveWith<Color>((
-                          Set<WidgetState> states,
-                        ) {
-                          if (states.contains(WidgetState.selected)) {
-                            return Colors.green;
-                          }
-                          return Theme.of(context).colorScheme.secondary;
-                        }),
                       ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        name,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          decoration:
-                              isCompleted ? TextDecoration.lineThrough : null,
+                      if (kIsWeb) SizedBox(width: 6),
+                      Flexible(
+                        child: Text(
+                          name,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            decoration:
+                                isCompleted ? TextDecoration.lineThrough : null,
+                          ),
+                          softWrap: true,
                         ),
-                        softWrap: true,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              // streak counter
-              if (streak > 0)
-                Row(
-                  children: [
-                    const SizedBox(width: 4),
-                    const Icon(
-                      Icons.local_fire_department,
-                      color: Colors.orange,
-                      size: 30,
-                    ),
-                    Text(
-                      streak.toString(),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                // streak counter
+                if (streak > 0)
+                  Row(
+                    children: [
+                      const SizedBox(width: 4),
+                      const Icon(
+                        Icons.local_fire_department,
                         color: Colors.orange,
+                        size: 30,
                       ),
-                    ),
-                  ],
-                ),
-            ],
+                      Text(
+                        streak.toString(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange,
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
+            ),
           ),
         ),
       ),
